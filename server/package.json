@@ -1,0 +1,25 @@
+{
+	"name": "eldhbac",
+	"version": "1.0.0",
+	"description": "Backend Server eldhria by foks_f",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"dev": "nodemon index.js"
+	},
+	"author": "Foks_f",
+	"license": "ISC",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"express-fileupload": "^1.4.3",
+		"express-validator": "^7.0.1",
+		"jsonwebtoken": "^9.0.2",
+		"mongoose": "^8.2.0",
+		"morgan": "^1.10.0",
+		"nodemon": "^3.1.0",
+		"request": "^2.88.2",
+		"uuid": "^9.0.1"
+	}
+}

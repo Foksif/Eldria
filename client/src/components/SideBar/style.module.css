@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+	--color-primary: #6c9bcf;
+	--color-danger: #ff0060;
+	--color-success: #1b9c85;
+	--color-warning: #f7d060;
+	--color-white: #fff;
+	--color-info-dark: #7d8da1;
+	--color-white: #202528;
+	--color-dark: #edeffd;
+	--color-dark-variant: #a3bdcc;
+	--color-background: ;
+
+	--card-border-radius: 2rem;
+	--border-radius-1: 0.4rem;
+	--border-radius-2: 1.2rem;
+
+	--card-padding: 1.8rem;
+	--padding-1: 1.2rem;
+
+	--box-shadow: 0 2rem 3rem var(--color-light);
+}
+
+.body {
+	font-size: 14px;
+	width: 25vw;
+	/* height: 100vh; */
+	font-family: 'Poppins', sans-serif;
+	font-size: 0.88rem;
+	user-select: none;
+	overflow-x: hidden;
+	color: var(--color-dark);
+	background-color: var(--color-background);
+}
+
+.a {
+	color: var(--color-dark);
+}
+
+.img {
+	display: block;
+	width: 100%;
+	object-fit: cover;
+}
+
+.h1 {
+	font-weight: 800;
+	font-size: 1.8rem;
+}
+
+.h2 {
+	font-weight: 600;
+	font-size: 1.4rem;
+}
+
+.h3 {
+	font-weight: 500;
+	font-size: 0.87rem;
+}
+
+.small {
+	font-size: 0.76rem;
+}
+
+.p {
+	color: var(--color-dark-variant);
+}
+
+.b {
+	color: var(--color-dark);
+}
+
+.text-muted {
+	color: var(--color-info-dark);
+}
+
+.primary {
+	color: var(--color-primary);
+}
+
+.danger {
+	color: var(--color-danger);
+}
+
+.success {
+	color: var(--color-success);
+}
+
+.warning {
+	color: var(--color-warning);
+}
+
+.container {
+	display: grid;
+	/* width: 96%; */
+
+	max-width: 200px;
+	margin: 0 0 0 30px;
+	grid-template-columns: 12rem auto 23rem;
+}
+
+.aside {
+	height: 100vh;
+}
+
+.aside .toggle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 1.4rem;
+}
+
+.aside .toggle .logo {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.aside .toggle .logo img {
+	width: 2rem;
+	height: 2rem;
+}
+
+.aside .toggle .close {
+	padding-right: 1rem;
+	display: none;
+}
+
+.aside .sidebar {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--color-white);
+	box-shadow: var(--box-shadow);
+	border-radius: 15px;
+	height: 88vh;
+	position: relative;
+	top: 1.5rem;
+	transition: all 0.3s ease;
+}
+
+.aside .sidebar:hover {
+	box-shadow: none;
+}
+
+.aside .sidebar a {
+	display: flex;
+	align-items: center;
+	color: var(--color-info-dark);
+	height: 3.7rem;
+	gap: 1rem;
+	position: relative;
+	margin-left: 2rem;
+	transition: all 0.3s ease;
+}
+
+.aside .sidebar a span {
+	font-size: 1.6rem;
+	transition: all 0.3s ease;
+}
+
+.aside .sidebar a:last-child {
+	position: absolute;
+	bottom: 2rem;
+	width: 100%;
+}
+
+.aside .sidebar a.active {
+	width: 100%;
+	color: var(--color-primary);
+	background-color: var(--color-light);
+	margin-left: 0;
+}
+
+.aside .sidebar a.active::before {
+	content: '';
+	width: 6px;
+	height: 18px;
+	background-color: var(--color-primary);
+}
+
+.aside .sidebar a.active span {
+	color: var(--color-primary);
+	margin-left: calc(1rem - 3px);
+}
+
+.aside .sidebar a:hover {
+	color: var(--color-primary);
+}
+
+.aside .sidebar a:hover span {
+	margin-left: 0.6rem;
+}
+
+.aside .sidebar .message-count {
+	background-color: var(--color-danger);
+	padding: 2px 6px;
+	color: var(--color-white);
+	font-size: 11px;
+	border-radius: var(--border-radius-1);
+}

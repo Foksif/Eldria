@@ -1,0 +1,106 @@
+.btn {
+	padding: 1rem 2rem;
+	font-size: 1rem;
+	color: #fff;
+	background-color: #1d4ed8;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.btn:hover {
+	background-color: #1e40af;
+}
+
+.header {
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	color: #fff;
+	text-align: center;
+	font-size: 2.25rem;
+	font-weight: 600;
+}
+
+.sub_header {
+	max-width: 600px;
+	margin: auto;
+	text-align: center;
+	color: #ccc;
+}
+
+.pricing {
+	margin-top: 4rem;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2rem;
+}
+
+.pricing .card {
+	padding: 3rem 2rem;
+	background-color: #27272a;
+	display: flex;
+	flex-direction: column;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	transition: all 0.3s ease;
+}
+
+.pricing .card:hover {
+	background-color: #323232;
+	border-color: #fff;
+}
+
+.pricing .card .content {
+	flex: 1;
+	margin-bottom: 2rem;
+}
+
+.pricing .card h4 {
+	margin-bottom: 1rem;
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+.pricing .card h3 {
+	color: #fff;
+	padding-bottom: 1rem;
+	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: 600;
+	border-bottom: 2px dashed #fff;
+}
+
+.pricing .card p {
+	color: #fff;
+	margin-bottom: 0.75rem;
+}
+
+.pricing .card p i {
+	color: #ccc;
+	font-size: 1.2rem;
+	margin-right: 0.3rem;
+}
+
+.pricing .card button {
+	color: #fff;
+	background-color: transparent;
+	border: 2px solid #fff;
+}
+
+.pricing .card button:hover {
+	background-color: #1e40af;
+	border-color: #1e40af;
+}
+
+@media (width < 900px) {
+	.pricing {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (width < 600px) {
+	.pricing {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}

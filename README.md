@@ -1,12 +1,16 @@
-
 <div align="center">
 
+# Badge Generator <br> :shield: :badger: :mage:
+
 > Website and backend for the Eldria project.
+
 ![](https://img.shields.io/badge/License-MIT-green.svg)
 ![](https://img.shields.io/badge/Author-Foks_f-orange.svg)
 ![](https://img.shields.io/badge/Node->=10-blue.svg)
 
 </div>
+
+
 ## Tech Stack
 
 **Client:** React

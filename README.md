@@ -1,6 +1,6 @@
 <div align="center">
 
-# Badge Generator <br> :shield: :badger: :mage:
+# Eldria <br> ❗ :shield: ❗
 
 > Website and backend for the Eldria project.
 

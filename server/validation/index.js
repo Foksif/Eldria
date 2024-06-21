@@ -7,7 +7,7 @@ export const registerValidator = [
 	body(
 		'password',
 		'Пароль должден быть больше 4 и не меньше 20 символов'
-	).isLength({ min: 4, max: 20 }),
+	).isLength({ min: 4, max: 40 }),
 ]
 
 export const forumValidator = [

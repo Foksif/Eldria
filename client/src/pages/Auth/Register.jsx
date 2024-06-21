@@ -1,119 +1,102 @@
-import { Link, NavLink } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { registerUser } from '../../store/features/auth/authSlice'
+import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { registerUser } from '../../store/features/auth/authSlice'
 
 import style from './style.module.css'
 
 export const Register = () => {
 	const h2 = style.h2
 	const inpotbox = style.inputbox
-
-	const [username, setUserName] = useState('')
-	const [password, setPassword] = useState('')
-	const [email, setEmail] = useState('')
-	const [userError, setUserError] = useState(false)
-	const [formValid, setFormValid] = useState(true)
-
-	const { status } = useSelector(state => state.auth)
-	const { succes } = useSelector(state => state.auth)
+	//
 
 	const dispath = useDispatch()
+	const { status, succes } = useSelector(state => state.auth)
 
-	const userNameHandler = e => {
-		setUserName(e.target.value)
-
-		if (!e.target.value) {
-			toast.error('Логин Не должен быть пустым!')
-			setUserError(true)
-		} else {
-			setUserError(false)
-		}
-	}
-
-	const emailHandler = e => {
-		setEmail(e.target.value)
-
-		if (!e.target.value) {
-			toast.error('Емаил Не должен быть пустым!')
-			setUserError(true)
-		} else {
-			setUserError(false)
-		}
-	}
-
-	const passwordHandler = e => {
-		setPassword(e.target.value)
-
-		if (!e.target.value) {
-			toast.error('Пароль Не должен быть пустым!')
-			setUserError(true)
-		} else {
-			setUserError(false)
-		}
-	}
+	const {
+		register,
+		formState: { errors },
+		handleSubmit,
+		reset,
+	} = useForm({
+		mode: 'onSubmit',
+	})
 
 	useEffect(() => {
-		if (status) {
-			if (!succes) {
-				return toast.error(status)
+		const asFunk = async () => {
+			if (status) {
+				if (!succes) {
+					return toast.error(status)
+				}
+				window.location.href = '/login'
+				toast.success(status)
 			}
-			toast.success(status)
 		}
-
-		if (!userError) {
-			setFormValid(false)
-		} else {
-			setFormValid(true)
-		}
+		asFunk()
 	}, [status])
 
-	const handleSubmit = () => {
+	const onSubmit = data => {
 		try {
-			const authData = {
-				email,
-				username,
-				password,
-			}
-
-			dispath(registerUser(authData))
-			// console.log(username, password, email)
-
-			setEmail('')
-			setUserName('')
-			setPassword('')
-		} catch (err) {
-			console.log(err)
-		}
+			dispath(registerUser(data))
+			reset()
+		} catch (error) {}
 	}
-	//
+
+	try {
+		try {
+			if (errors.email.message || false) {
+				toast.error(errors.email.message)
+			}
+		} catch (error) {}
+
+		try {
+			if (errors.username.message) {
+				toast.error(errors.username.message)
+			}
+		} catch (error) {}
+		try {
+			if (errors.password.message) {
+				toast.error(errors.password.message)
+			}
+		} catch (error) {}
+	} catch (error) {
+		toast.error('Возникла проблема с валидацией формы')
+	}
 
 	return (
 		<section className={style.section}>
 			<div className={style.form_box}>
 				<div className='form_value'>
-					<form onSubmit={e => e.preventDefault()}>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						<h2 className={h2}>Register</h2>
 						{/* EMAIL */}
 						<div className={inpotbox}>
 							<ion-icon name='mail-outline'></ion-icon>
+
 							<input
-								value={email}
-								onChange={e => emailHandler(e)}
-								type='text'
-								required
+								{...register('email', {
+									required: "Поле 'E-MAIL' обязательно для заполнения",
+									pattern: {
+										value:
+											/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+										message: 'Поле E-Mail Invalid',
+									},
+								})}
 							/>
+
 							<label htmlFor=''>Email</label>
 						</div>
 						{/* USERNAME */}
 						<div className={inpotbox}>
 							<ion-icon name='person-outline'></ion-icon>
 							<input
-								value={username}
-								onChange={e => userNameHandler(e)}
+								{...register('username', {
+									required: "Поле 'Login' обязательно для заполнения",
+								})}
 								type='text'
-								required
 							/>
 							<label htmlFor=''>Login </label>
 						</div>
@@ -121,25 +104,41 @@ export const Register = () => {
 						<div className={inpotbox}>
 							<ion-icon name='lock-closed-outline'></ion-icon>
 							<input
-								value={password}
-								onChange={e => passwordHandler(e)}
+								{...register('password', {
+									required: "Поле 'Password' обязательно для заполнения",
+									minLength: {
+										value: 5,
+										message: 'Пароль должен быть от 5 и до 40 символов',
+									},
+									maxLength: {
+										value: 60,
+										message: 'Пароль должен быть от 5 и до 40 символов',
+									},
+								})}
 								type='password'
-								required
 							/>
 							<label htmlFor=''>Password</label>
 						</div>
-						<button
-							// disabled={formValid}
-							onClick={handleSubmit}
-							className={style.button}
-						>
-							Register
-						</button>
+						<input value='Register' type='submit' className={style.button} />
+
 						<div className={style.register}>
 							<p>
 								Уже есть аккаунт <NavLink to='/login'>вход</NavLink>.
 							</p>
 							<h3>Protected with HardID</h3>
+							{/* <div>
+								{errors?.email && (
+									<p style={{ color: 'red' }}>
+										{errors?.email?.message || 'Непредвиденная ошибка!'}
+									</p>
+								)}
+								{errors?.username && (
+									<p style={{ color: 'red' }}>
+										{errors?.username?.message || 'Непредвиденная ошибка!'}
+									</p>
+								)}
+							</div> */}
+							{/* <h3> Protected with HardID</h3> */}
 						</div>
 					</form>
 				</div>

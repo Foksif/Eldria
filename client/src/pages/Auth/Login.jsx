@@ -1,5 +1,6 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import React, { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 
@@ -10,72 +11,90 @@ export const Login = () => {
 	const h2 = style.h2
 	const inpotbox = style.inputbox
 
-	const [username, setUserName] = useState('')
-	const [password, setPassword] = useState('')
-
-	const { status } = useSelector(state => state.auth)
-	const { succes } = useSelector(state => state.auth)
+	const { status, succes } = useSelector(state => state.auth)
 
 	const dispath = useDispatch()
-	const navigate = useNavigate()
+
+	const {
+		register,
+		formState: { errors },
+		handleSubmit,
+		reset,
+	} = useForm({
+		mode: 'onSubmit',
+	})
 
 	useEffect(() => {
-		if (status) {
-			if (!succes) {
-				return toast.error(status)
+		const asFunk = async () => {
+			if (status) {
+				if (!succes) {
+					return toast.error(status)
+				}
+				window.location.href = '/'
+				toast.success(status)
 			}
-			toast.success(status)
 		}
+		asFunk()
 	}, [status])
 
-	const handleSubmit = () => {
+	try {
 		try {
-			const authData = {
-				username,
-				password,
+			if (errors.username.message) {
+				toast.error(errors.username.message)
 			}
+		} catch (error) {}
+		try {
+			if (errors.password.message) {
+				toast.error(errors.password.message)
+			}
+		} catch (error) {}
+	} catch (error) {
+		toast.error('Возникла проблема с валидацией формы')
+	}
 
-			dispath(loginUser(authData))
-			// console.log(username, password, email)
-
-			// setEmail('')
-			setUserName('')
-			setPassword('')
-		} catch (err) {
-			console.log(err)
-		}
+	const onSubmit = data => {
+		try {
+			dispath(loginUser(data))
+			reset()
+		} catch (error) {}
 	}
 
 	return (
 		<section className={style.section}>
 			<div className={style.form_box}>
 				<div className='form_value'>
-					<form onSubmit={e => e.preventDefault()}>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						<h2 className={h2}>Login</h2>
 
 						<div className={inpotbox}>
 							<ion-icon name='person-outline'></ion-icon>
 							<input
-								value={username}
-								onChange={e => setUserName(e.target.value)}
+								{...register('username', {
+									required: "Поле 'Login' обязательно для заполнения",
+								})}
 								type='text'
-								required
 							/>
 							<label htmlFor=''>Login </label>
 						</div>
 						<div className={inpotbox}>
 							<ion-icon name='lock-closed-outline'></ion-icon>
 							<input
-								value={password}
-								onChange={e => setPassword(e.target.value)}
+								{...register('password', {
+									required: "Поле 'Password' обязательно для заполнения",
+									minLength: {
+										value: 5,
+										message: 'Пароль должен быть от 5 и до 40 символов',
+									},
+									maxLength: {
+										value: 60,
+										message: 'Пароль должен быть от 5 и до 40 символов',
+									},
+								})}
 								type='password'
-								required
 							/>
 							<label htmlFor=''>Password</label>
 						</div>
-						<button onClick={handleSubmit} className={style.button}>
-							Log in
-						</button>
+						<input value='Log In' type='submit' className={style.button} />
 						<div className={style.register}>
 							<p>
 								Нету аккаунта <NavLink to='/register'>регистрация</NavLink>.

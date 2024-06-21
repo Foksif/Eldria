@@ -10,18 +10,18 @@ export const projectName = 'Eldria' // The name of your site. (Must match the pr
 
 export const BackEnd_Port = 8080 // Port of your BackEnd server (Must match "SERVER_PORT")
 
-export const PairingToken = '<TOKEN>'
+export const PairingToken = 'SevretTokenFotPaitingWebApp'
 
 export const BackEndVersion = 1.0
 
 // Easy Donate...
 
-export const Shop_Key = '<Key>'
+export const Shop_Key = 'c82eb9940ab9fd29b0c4e2323512a7b8'
 export const EasyURL = 'https://easydonate.ru/api/v3/shop/'
 
 // Minecraft
 
-export const GameIP = 'mc.hypixel.net' // IP address or domain of your server.
+export const GameIP = 'mc.mineblaze.net' // IP address or domain of your server.
 export const GamePORT = '25565' // You can not specify the port.
 
 // HardNetwork

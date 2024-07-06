@@ -271,3 +271,45 @@ tr {
 	font-size: 20px;
 	padding-bottom: 10px;
 }
+
+.settings_block {
+	display: flex;
+	justify-content: center;
+}
+
+.sButton_t {
+	display: flex;
+	background: #fecdd3;
+	width: 30px;
+	height: 30px;
+	border-radius: 7px;
+	color: #d32f2f;
+	font-size: 20px;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s;
+}
+
+.sButton_t:hover {
+	background: #ffc0c7;
+	transform: scale(1.2);
+}
+
+.sButton_s {
+	margin-right: 6px;
+	display: flex;
+	background: #fff2c6;
+	width: 30px;
+	height: 30px;
+	border-radius: 7px;
+	color: #fbc02d;
+	font-size: 20px;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s;
+}
+
+.sButton_s:hover {
+	background: #ffeeb6;
+	transform: scale(1.2);
+}

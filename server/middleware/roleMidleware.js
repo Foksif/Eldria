@@ -18,11 +18,11 @@ export default function () {
 
 			const { id } = jwt.verify(token, SECRET_TOKEN)
 
-			console.log(id)
+			// console.log(id)
 
 			const { isAdmin } = await User.findById(id).exec()
 
-			console.log(isAdmin)
+			// console.log(isAdmin)
 
 			if (!isAdmin) {
 				return res

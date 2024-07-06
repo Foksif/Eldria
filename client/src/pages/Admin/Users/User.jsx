@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react'
 import style from './style.module.css'
 import hardLogo from '../../../image/hardLogo.png'
 import axios from '../../../utils/axios'
+import { toast } from 'react-toastify'
 import { version, projectName } from '../../../configs'
-
-// До исторические обрывки цевилизации)
 
 // const filterUsers = (searchText, listOfUsers) => {
 // 	if (!searchText) {
@@ -17,24 +16,6 @@ import { version, projectName } from '../../../configs'
 // }
 
 export const User = () => {
-	// О вы ещё здесь!)
-	// Это продолжение моего сочинения "На сколько меня заебал этот сайт"
-	// Вот сижу на часах 5 утра мне на учёбу в восемь и думаю
-	// хули я так много трачу времени на этот сайт но не будем обо мне
-	// Этот блок я переписывал рекордных 5 раз! Вы возможно зададитесь вопросом почему так много?
-	// А я вам отвечу из за моей тупости :( Сначало всё шло хорошо обрисовал какой никакой но дизайн
-	// сверстал его, смотрю и понимаю что не то что я хотел полез в инет а дизайна прикольных таблиц нету
-	// и спустя блятских 30 МИНУТ я нашёл его и поне что да это оно! сверстал начал подключать к беку,
-	// спросите что было дальше? ну тогда слушайте, подключил я эту херабору начал тестить а оно не работает
-	// я задался вопросом какого хуя? Но подумал похуй разберусь но не тут то было (поясню ошибка была в преобразовании из JSON
-	// в понятный для реакта) провозилса часа 2 и думаю а что если я в дефолтный стейт буду передовать стартовый JSON обьект и блять
-	// эта хуйня придуманная за 5 сек сработала я был подавлен потомучто какойто ебаный JavaScript попустил и выебал мой и без того
-	// уставший труп я конечно не расстерялся и подумал а хули поиск блять не добавить ну типо а почему бы и нет это конечно
-	// было легче но всёже пришлось переписать часть с получсением данных с серера до этого запрос находился в useEffect
-	// но из за того что при каждом обновлении DOM-дерево заново отправлялся запрос на сервер пришлось сделать отдельную функцию
-	// для получения данных с сервера и о чудо с костылями но это заработало!
-	// Крч потратил часв 7 наверно уже точно не помню но из этих часов 7 я наверно часа 2 исках инфу в инете!
-
 	const st_text = style.text + ' ' + style.header_text
 	const st_icon = 'bx bx-chevron-right' + ' ' + style.toggle
 	const st_navtext = style.text + ' ' + style.nav_text
@@ -66,6 +47,11 @@ export const User = () => {
 	const updateData = () => {
 		try {
 			axios.get('/auth/users').then(data => {
+				setUserData([
+					{
+						username: 'Получаем данные с сервера',
+					},
+				])
 				setUserData(data.data)
 			})
 		} catch (err) {
@@ -93,17 +79,79 @@ export const User = () => {
 	}
 
 	const addStyleS = data => {
-		if (data == 'root') {
+		if (data) {
 			return sStyle
 		} else return eStyle
+	}
+
+	// delete User
+	const deleteUser = async value => {
+		const id = value.target.parentElement.value
+
+		try {
+			await axios
+				.delete('auth/users', {
+					data: {
+						id,
+					},
+				})
+				.then(data => {
+					toast.success('Операция прошла успешно!')
+					updateData()
+				})
+		} catch (error) {}
+
+		console.log(value)
+	}
+	// swapRole
+	const swapRole = async value => {
+		const id = value.target.parentElement.value
+
+		console.log(id)
+
+		try {
+			await axios
+				.post('auth/addrole', {
+					id,
+				})
+				.then(data => {
+					toast.success('Роли были успешно изменены')
+					updateData()
+				})
+		} catch (error) {
+			toast.error('произошла внутренняя ошибка')
+		}
 	}
 
 	let resData = userData.map(data => {
 		return (
 			<tr key={data._id}>
-				<td style={addStyleS(data.username)}>{data.username}</td>
+				<td style={addStyleS(data.isAdmin)}>{data.username}</td>
 				<td>{data.email}</td>
 				<td>{ChecAdm(data.isAdmin)}</td>
+				<td>
+					{/* <select name='' id=''>
+						<option value='user'>User</option>
+						<option value='admin'>Admin</option>
+					</select> */}
+					<div className={style.settings_block}>
+						<button
+							value={data._id}
+							onClick={swapRole}
+							className={style.sButton_s}
+						>
+							<i value={data._id} class='bx bxs-user-account'></i>
+						</button>
+
+						<button
+							value={data._id}
+							onClick={deleteUser}
+							className={style.sButton_t}
+						>
+							<i value={data._id} class='bx bx-trash'></i>
+						</button>
+					</div>
+				</td>
 			</tr>
 		)
 	})
@@ -190,6 +238,7 @@ export const User = () => {
 					</div>
 				</div>
 			</nav>
+
 			{/* Home */}
 			<section className={style.home}>
 				<div className={style.topHead}>
@@ -214,6 +263,7 @@ export const User = () => {
 							<th>UserName</th>
 							<th>E-Mail</th>
 							<th>Role</th>
+							<th>Settings</th>
 						</tr>
 					</thead>
 					<tbody>{resData}</tbody>

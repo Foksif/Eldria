@@ -144,6 +144,7 @@ class authController {
 			//
 
 			const { id } = req.body
+			console.log(id)
 			if (!id) {
 				//	validation
 				return res.status(400).json({ messgae: 'User ID не указан' })
@@ -153,6 +154,39 @@ class authController {
 			res.status(200).json({ message: 'Пользователь удалённ' })
 		} catch (err) {
 			console.log('Error: DeleteUser')
+		}
+	}
+	async addrole(req, res) {
+		try {
+			const { id } = req.body
+
+			console.log(id)
+
+			var role = false
+
+			if (!id) {
+				return res.status(400).json({ message: 'не указанны параметры' })
+			}
+
+			const { isAdmin } = await User.findById(id)
+
+			if (isAdmin) {
+				role = false
+			} else {
+				role = true
+			}
+
+			console.log(role)
+
+			const updateRole = await User.updateOne(
+				{ _id: id },
+				{ $set: { isAdmin: role } }
+			)
+			return res
+				.status(200)
+				.json({ status: 1, message: 'Роли успешно измененны!', updateRole })
+		} catch (err) {
+			console.log('Error: AddRole', err)
 		}
 	}
 }

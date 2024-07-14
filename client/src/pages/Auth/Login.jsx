@@ -8,6 +8,22 @@ import style from './style.module.css'
 import { loginUser } from '../../store/features/auth/authSlice'
 
 export const Login = () => {
+	const searchParamsId = new URLSearchParams(window.location.search)
+	const paramid = searchParamsId.get('id')
+
+	const searchParams = new URLSearchParams(window.location.search)
+	const messageValue = searchParams.get('message')
+
+	if (paramid == 0) {
+		toast.warning(messageValue)
+	} else if (paramid == 1) {
+		toast.success(messageValue)
+	} else if (paramid == 2) {
+		toast.error(messageValue)
+	} else {
+		toast.error('Произошла непредвиденная ошибка')
+	}
+
 	const h2 = style.h2
 	const inpotbox = style.inputbox
 
@@ -30,8 +46,8 @@ export const Login = () => {
 				if (!succes) {
 					return toast.error(status)
 				}
-				window.location.href = '/'
-				toast.success(status)
+
+				window.location.href = '/?id=1&message=' + status
 			}
 		}
 		asFunk()

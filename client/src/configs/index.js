@@ -14,9 +14,21 @@ export const PairingToken = 'SevretTokenFotPaitingWebApp'
 
 export const BackEndVersion = 1.0
 
+// Donate
+
+// 0 - Trade MC
+// 1 - Easy Donate
+// 2 - Not Usage
+
+export const donate_conf_params = 0 // This function is unstable, it is recommended not to change the parameters
+
+// Trade MC
+
+export const T_Shop_Key = ''
+
 // Easy Donate...
 
-export const Shop_Key = 'c82eb9940ab9fd29b0c4e2323512a7b8'
+export const E_Shop_Key = ''
 export const EasyURL = 'https://easydonate.ru/api/v3/shop/'
 
 // Minecraft

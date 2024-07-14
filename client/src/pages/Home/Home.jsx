@@ -4,8 +4,25 @@ import DiscordImg from '../../image/discord.svg'
 import arrowImg from '../../image/arrow.svg'
 
 import { projectName } from '../../configs'
+import { toast } from 'react-toastify'
 
 const HomePage = () => {
+	const searchParamsId = new URLSearchParams(window.location.search)
+	const paramid = searchParamsId.get('id')
+
+	const searchParams = new URLSearchParams(window.location.search)
+	const messageValue = searchParams.get('message')
+
+	if (paramid == 0) {
+		toast.warning(messageValue)
+	} else if (paramid == 1) {
+		toast.success(messageValue)
+	} else if (paramid == 2) {
+		toast.error(messageValue)
+	} else {
+		toast.error('Произошла непредвиденная ошибка')
+	}
+
 	// Styles constants
 	const discordSt = HomeCSS.min_wighet + ' ' + HomeCSS.discord
 	const telegramSt = HomeCSS.min_wighet + ' ' + HomeCSS.telegram

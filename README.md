@@ -53,7 +53,11 @@ Before running the application, make sure you have configured the configuration 
   npm install
   npm run dev
 ```
+
   
+## Author
+
+- [Wiki](https://www.github.com/foksif/Eldria/wiki)
 
 
 

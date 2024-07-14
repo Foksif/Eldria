@@ -55,7 +55,7 @@ Before running the application, make sure you have configured the configuration 
 ```
 
   
-## Author
+## WIKI
 
 - [Wiki](https://www.github.com/foksif/Eldria/wiki)
 

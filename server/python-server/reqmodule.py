@@ -5,7 +5,7 @@ import requests
 def getItems(shopKey):
   headers = {"Shop-Key": shopKey}
   url = 'https://easydonate.ru/api/v3/shop/products'
-  r = requests.get(url, headers=headers)
+   r = requests.get(url, headers=headers)
 
   return r.text
 
@@ -43,4 +43,4 @@ def paymentCreate(shopKey, customer, server_id, products, success_url):
   return r.text
 
 
-print(paymentCreate('aa22ffa4bce5328a7782b8af738bb999', 'Foks_f', '36047', '{"319933": 1}', 'https:\/\/localhost.io'))
+# print(paymentCreate('aa22ffa4bce5328a7782b8af738bb999', 'Foks_f', '36047', '{"319933": 1}', 'https:\/\/localhost.io'))

@@ -14,7 +14,7 @@
 
 **Client:** React
 
-**Server:** Node, Express, HardNet
+**Server:** Node, Express, HardNet, Flask, Python, JavaScript
 
 
 ## Plugins

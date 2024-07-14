@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/License-MIT-green.svg)
 ![](https://img.shields.io/badge/Author-Foks_f-orange.svg)
-![](https://img.shields.io/badge/Node->=10-green.svg)
+![](https://img.shields.io/badge/Node->=10-red.svg)
 ![](https://img.shields.io/badge/Python-3.12-blue.svg)
 
 </div>

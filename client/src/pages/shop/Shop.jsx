@@ -1,32 +1,20 @@
 import React from 'react'
 import style from './style.module.css'
-import { EasyURL, Shop_Key } from '../../configs'
+import { donate_conf_params } from '../../configs/index.js'
+import { toast } from 'react-toastify'
 import axios from 'axios'
-export const Shop = () => {
-	// Axios
 
-	const request = () => {
-		try {
-			axios
-				.get('https://easydonate.ru/api/v3/shop/', {
-					headers: {
-						'Shop-Key': Shop_Key,
-					},
-				})
-				.then(data => {
-					console.log(data)
-				})
-		} catch (error) {
-			console.log(error)
-		}
+export const Shop = () => {
+	if (donate_conf_params === 0) {
+		// TradeMc code
+	} else if (donate_conf_params === 1) {
+		// EasyDonate code
+	} else if (donate_conf_params === 2) {
+		window.location.href = '/?id=0&message=Страница закрыта!'
 	}
 
 	return (
 		<section class='container'>
-			<button onClick={request} className={style.btn}>
-				Submit
-			</button>
-
 			<h2 class={style.header}>DONATE</h2>
 			<p class={style.sub_header}>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit.

@@ -31,7 +31,7 @@ export const Register = () => {
 				if (!succes) {
 					return toast.error(status)
 				}
-				window.location.href = '/login'
+				window.location.href = '/login?id=1&message' + status
 				toast.success(status)
 			}
 		}

@@ -22,6 +22,7 @@
 **Client:** Redux, Redux Toolkit, Axios
 
 **Server:** Bcryptjs, Cors, Mongoose, Request, UUID
+**Python-Server:** Request, Flask
 
 ## Installation
 

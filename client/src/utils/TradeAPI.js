@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { Py_BackEnd_Port } from '../configs/index'
+import { T_Shop_Key } from '../configs/index'
 
 const instance = axios.create({
-	baseURL: `http://User-PC:${Py_BackEnd_Port}/api/v/1`,
+	baseURL: 'https://api.trademc.org/shop.',
 })
 
 instance.interceptors.request.use(config => {

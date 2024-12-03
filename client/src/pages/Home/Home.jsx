@@ -20,7 +20,6 @@ const HomePage = () => {
 	} else if (paramid == 2) {
 		toast.error(messageValue)
 	} else {
-		toast.error('Произошла непредвиденная ошибка')
 	}
 
 	// Styles constants

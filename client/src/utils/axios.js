@@ -1,7 +1,8 @@
 import axios from 'axios'
+import { BackEnd_Port } from '../configs/index'
 
 const instance = axios.create({
-	baseURL: 'http://localhost:8090/api',
+	baseURL: 'http://localhost:' + BackEnd_Port + '/api',
 })
 
 instance.interceptors.request.use(config => {

@@ -21,7 +21,6 @@ export const Login = () => {
 	} else if (paramid == 2) {
 		toast.error(messageValue)
 	} else {
-		toast.error('Произошла непредвиденная ошибка')
 	}
 
 	const h2 = style.h2

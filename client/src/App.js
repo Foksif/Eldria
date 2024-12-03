@@ -30,7 +30,7 @@ function App() {
 	const notAuth = ['profile']
 	const auth = ['login', 'register']
 
-	// Для перенаправления (редиректа) пользователей
+	// Для редиректа пользователей
 	const chechIsPage = page => {
 		if (segment === page) {
 			if (notAuth.includes(page)) {

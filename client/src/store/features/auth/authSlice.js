@@ -48,13 +48,9 @@ export const loginUser = createAsyncThunk('auth/login', async authData => {
 			username,
 			password,
 		})
-		// console.log('axios submitted') - DEBUG
-
 		if (data.token) {
 			window.localStorage.setItem('token', data.token)
 		}
-		// console.log(data.message) - DEBUG
-
 		return data
 	} catch (e) {
 		console.log(e)

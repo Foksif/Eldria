@@ -8,7 +8,9 @@ export const projectName = 'Eldria' // The name of your site. (Must match the pr
 
 // API (BackEnd)
 
-export const BackEnd_Port = 8080 // Port of your BackEnd server (Must match "SERVER_PORT")
+export const BackEnd_Port = 8090 // Port of your BackEnd server (Must match "SERVER_PORT")
+
+export const Py_BackEnd_Port = 7088 // Port of your Python BackEnd server
 
 export const PairingToken = 'SevretTokenFotPaitingWebApp'
 
@@ -24,7 +26,7 @@ export const donate_conf_params = 0 // This function is unstable, it is recommen
 
 // Trade MC
 
-export const T_Shop_Key = ''
+export const T_Shop_Key = 213364
 
 // Easy Donate...
 
